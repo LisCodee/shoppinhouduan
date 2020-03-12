@@ -15,6 +15,7 @@ public enum ExceptionEnum {
     CATEGORY_BRAND_SAVE_ERROR(500,"新增中间表失败"),
     FILE_UPLOAD_ERROR(500,"文件上传失败"),
     INVALID_FILE_TYPE(500, "文件类型不匹配"),
+    SPEC_GROUP_NOT_FOUND(404,"商品规格组不存在"),
     ;
     private int code;
     private String msg;
