@@ -2,8 +2,10 @@ package com.leyou.item.web;
 
 
 import com.leyou.item.pojo.SpecGroup;
+import com.leyou.item.pojo.Specification;
 import com.leyou.item.service.SpecificationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,10 +20,14 @@ import java.util.List;
 public class SpecificationController {
 
     @Autowired
-    private SpecificationService service;
+    private SpecificationService specificationService;
 
-    @GetMapping("groups/{cid}")
-    public ResponseEntity<List<SpecGroup>> queryGroupById(@PathVariable("cid") Long cid){
-        return ResponseEntity.ok(service.queryGroupById(cid));
+    @GetMapping("{id}")
+    public ResponseEntity<String> querySpecificationByCategoryId(@PathVariable("id") Long id){
+        Specification spec = this.specificationService.queryById(id);
+        if (spec == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok(spec.getSpecifications());
     }
 }

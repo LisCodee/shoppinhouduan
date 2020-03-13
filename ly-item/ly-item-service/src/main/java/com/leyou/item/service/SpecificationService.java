@@ -3,7 +3,9 @@ package com.leyou.item.service;
 import com.leyou.common.enums.ExceptionEnum;
 import com.leyou.common.exception.LyException;
 import com.leyou.item.mapper.SpecGroupMapper;
+import com.leyou.item.mapper.SpecificationMapper;
 import com.leyou.item.pojo.SpecGroup;
+import com.leyou.item.pojo.Specification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -15,6 +17,8 @@ public class SpecificationService {
 
     @Autowired
     private SpecGroupMapper specGroupMapper;
+    @Autowired
+    private SpecificationMapper specificationMapper;
 
     public List<SpecGroup> queryGroupById(Long cid) {
         SpecGroup g = new SpecGroup();
@@ -24,5 +28,9 @@ public class SpecificationService {
             throw new LyException(ExceptionEnum.SPEC_GROUP_NOT_FOUND);
         }
         return list;
+    }
+
+    public Specification queryById(Long id) {
+        return this.specificationMapper.selectByPrimaryKey(id);
     }
 }
