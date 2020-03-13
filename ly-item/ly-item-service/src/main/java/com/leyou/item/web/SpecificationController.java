@@ -30,4 +30,5 @@ public class SpecificationController {
         }
         return ResponseEntity.ok(spec.getSpecifications());
     }
+
 }

@@ -17,6 +17,7 @@ public enum ExceptionEnum {
     INVALID_FILE_TYPE(500, "文件类型不匹配"),
     SPEC_GROUP_NOT_FOUND(404,"商品规格组不存在"),
     GOODS_NOT_FOUND(404,"商品不存在"),
+    GOODS_SAVE_ERROR(404,"新增商品失败"),
     ;
     private int code;
     private String msg;

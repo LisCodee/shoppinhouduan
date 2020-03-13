@@ -6,11 +6,9 @@ import com.leyou.item.service.GoodsService;
 import com.netflix.discovery.converters.Auto;
 import com.sun.org.glassfish.external.statistics.annotations.Reset;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class GoodsController {
@@ -35,4 +33,9 @@ public class GoodsController {
         return ResponseEntity.ok(goodsService.querySpuByPage(page, rows, saleable, key));
     }
 
+    @PostMapping("goods")
+    public ResponseEntity<Void> saveGoods(@RequestBody Spu spu){
+        goodsService.saveGoods(spu);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
 }
